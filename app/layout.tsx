@@ -2,8 +2,17 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Lời Chúc Năm Mới",
-  description: "Lời chúc của mọi người",
+  title: " ",
+  description: " ",
+  openGraph: {
+    title: " ",
+    description: " ",
+    siteName: " ",
+  },
+  twitter: {
+    title: " ",
+    description: " ",
+  },
 };
 
 export default function RootLayout({
