@@ -9,8 +9,7 @@ interface Props {
 }
 
 function formatTime(raw: string): string {
-  // Format: DD/MM/YYYY HH:mm:ss
-  const match = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2})/);
+  const match = raw.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})/);
   if (!match) return raw;
   const [, dd, mm, yyyy, hh, min] = match;
   const date = new Date(+yyyy, +mm - 1, +dd, +hh, +min);
@@ -23,7 +22,7 @@ function formatTime(raw: string): string {
   const time = date.toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" });
   if (diffDays === 0) return `Hôm nay, ${time}`;
   if (diffDays === 1) return `Hôm qua, ${time}`;
-  return `${dd}/${mm}/${yyyy}, ${time}`;
+  return `${String(dd).padStart(2,"0")}/${String(mm).padStart(2,"0")}/${yyyy}, ${time}`;
 }
 
 export default function WishCard({ name, wish, index, timestamp }: Props) {
