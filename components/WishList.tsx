@@ -12,7 +12,9 @@ interface Props {
 }
 
 function parseDate(ts: string): number {
-  const m = ts.match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2})/);
+  if (!ts) return 0;
+  // Support both DD/MM/YYYY and D/M/YYYY (with or without leading zero)
+  const m = ts.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})/);
   if (!m) return 0;
   return new Date(+m[3], +m[2] - 1, +m[1], +m[4], +m[5]).getTime();
 }

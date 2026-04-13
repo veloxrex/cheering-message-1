@@ -59,7 +59,7 @@ function parseCSV(text: string): string[][] {
 }
 
 export async function fetchWishes(): Promise<WishEntry[]> {
-  const res = await fetch(CSV_URL, { next: { revalidate: 60 } });
+  const res = await fetch(CSV_URL, { cache: "no-store" });
 
   if (!res.ok) {
     throw new Error("Không thể tải dữ liệu từ Google Sheets");
@@ -109,7 +109,8 @@ export async function fetchWishes(): Promise<WishEntry[]> {
   // Sort mới nhất ở trên
   entries.sort((a, b) => {
     const parse = (ts: string) => {
-      const m = ts.match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2})/);
+      if (!ts) return 0;
+      const m = ts.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})/);
       if (!m) return 0;
       return new Date(+m[3], +m[2] - 1, +m[1], +m[4], +m[5]).getTime();
     };
