@@ -85,6 +85,8 @@ export default function WishCard({ name, wish, index, timestamp }: Props) {
           color: hovered ? "#2a1020" : "#3a2030",
           margin: 0,
           transition: "color 0.3s ease",
+          whiteSpace: "pre-wrap",
+          wordBreak: "break-word",
         }}
       >
         {wish || "Chúc mừng!"}
