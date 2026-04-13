@@ -3,7 +3,7 @@ import WishCard from "@/components/WishCard";
 import AutoRefresh from "@/components/AutoRefresh";
 import FloatingHearts from "@/components/FloatingHearts";
 
-export const revalidate = 30;
+export const revalidate = 5;
 
 export default async function Home() {
   let wishes = await fetchWishes().catch(() => []);
@@ -18,7 +18,7 @@ export default async function Home() {
         overflow: "hidden",
       }}
     >
-      <AutoRefresh interval={30000} />
+      <AutoRefresh interval={5000} />
       <FloatingHearts />
 
       {/* ── HEADER ── */}
