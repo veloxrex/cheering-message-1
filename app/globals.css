@@ -1,18 +1,68 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&display=swap');
 
 body {
-  background: #f7f3f5;
+  background: #fdf8f6;
   min-height: 100vh;
-  font-family: "Georgia", "Times New Roman", serif;
+  font-family: "Cormorant Garamond", "Georgia", serif;
   color: #2a1a22;
 }
 
 @keyframes fadein {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes fadeup {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
 .card-fadein {
-  animation: fadein 0.4s ease forwards;
+  animation: fadein 0.5s ease forwards;
   opacity: 0;
+}
+
+.hero-title {
+  animation: fadeup 1s ease forwards;
+}
+
+.hero-sub {
+  animation: fadeup 1s ease 0.3s forwards;
+  opacity: 0;
+}
+
+.hero-date {
+  animation: fadeup 1s ease 0.5s forwards;
+  opacity: 0;
+}
+
+.petal {
+  position: absolute;
+  pointer-events: none;
+  animation: float 4s ease-in-out infinite;
+}
+
+.divider-ornament {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+.divider-ornament::before,
+.divider-ornament::after {
+  content: '';
+  height: 1px;
+  width: 80px;
+  background: linear-gradient(to right, transparent, #c9a0b4);
+}
+
+.divider-ornament::after {
+  background: linear-gradient(to left, transparent, #c9a0b4);
 }
