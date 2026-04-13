@@ -8,7 +8,7 @@ interface Props {
   timestamp: string;
 }
 
-function relativeTime(raw: string): string {
+function formatTime(raw: string): string {
   // Format: DD/MM/YYYY HH:mm:ss
   const match = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2})/);
   if (!match) return raw;
@@ -20,14 +20,14 @@ function relativeTime(raw: string): string {
       Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())) /
       86400000
   );
-  if (diffDays === 0)
-    return date.toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" });
-  if (diffDays === 1) return "Hôm qua";
-  return `${diffDays} ngày trước`;
+  const time = date.toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" });
+  if (diffDays === 0) return `Hôm nay, ${time}`;
+  if (diffDays === 1) return `Hôm qua, ${time}`;
+  return `${dd}/${mm}/${yyyy}, ${time}`;
 }
 
 export default function WishCard({ name, wish, index, timestamp }: Props) {
-  const time = timestamp ? relativeTime(timestamp) : "";
+  const time = timestamp ? formatTime(timestamp) : "";
   const [hovered, setHovered] = useState(false);
 
   return (
