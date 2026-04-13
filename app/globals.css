@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap');
 @import "tailwindcss";
 
 html, body {
@@ -14,7 +14,7 @@ body {
     radial-gradient(ellipse at 50% 50%, rgba(253, 240, 245, 0.6) 0%, transparent 80%),
     #fdf8f6;
   min-height: 100vh;
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Nunito", "Segoe UI", sans-serif;
   color: #2a1a22;
 }
 

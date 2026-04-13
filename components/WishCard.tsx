@@ -52,10 +52,10 @@ export default function WishCard({ name, wish, index, timestamp }: Props) {
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "10px" }}>
         <span
           style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "12px",
-            fontWeight: 600,
-            letterSpacing: "0.18em",
+            fontFamily: "'Nunito', sans-serif",
+            fontSize: "13px",
+            fontWeight: 700,
+            letterSpacing: "0.06em",
             textTransform: "uppercase",
             color: hovered ? "#c9829c" : "#9e6882",
             transition: "color 0.3s ease",
@@ -66,7 +66,7 @@ export default function WishCard({ name, wish, index, timestamp }: Props) {
         {time && (
           <span
             style={{
-              fontFamily: "'Cormorant Garamond', serif",
+              fontFamily: "'Nunito', sans-serif",
               fontSize: "13px",
               color: "#c9a8b8",
             }}
@@ -79,9 +79,11 @@ export default function WishCard({ name, wish, index, timestamp }: Props) {
       {/* Wish text */}
       <p
         style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: "clamp(17px, 2.2vw, 20px)",
-          lineHeight: 1.75,
+          fontFamily: "'Nunito', sans-serif",
+          fontSize: "clamp(16px, 2vw, 18px)",
+          fontWeight: 400,
+          fontStyle: "italic",
+          lineHeight: 1.8,
           color: hovered ? "#2a1020" : "#3a2030",
           margin: 0,
           transition: "color 0.3s ease",

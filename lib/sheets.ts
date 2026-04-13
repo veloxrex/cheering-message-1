@@ -106,5 +106,15 @@ export async function fetchWishes(): Promise<WishEntry[]> {
     }))
     .filter((e) => e.name || e.wish);
 
+  // Sort mới nhất ở trên
+  entries.sort((a, b) => {
+    const parse = (ts: string) => {
+      const m = ts.match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2})/);
+      if (!m) return 0;
+      return new Date(+m[3], +m[2] - 1, +m[1], +m[4], +m[5]).getTime();
+    };
+    return parse(b.timestamp) - parse(a.timestamp);
+  });
+
   return entries;
 }

@@ -1,5 +1,5 @@
 import { fetchWishes } from "@/lib/sheets";
-import WishCard from "@/components/WishCard";
+import WishList from "@/components/WishList";
 import AutoRefresh from "@/components/AutoRefresh";
 import FloatingHearts from "@/components/FloatingHearts";
 
@@ -33,9 +33,9 @@ export default async function Home() {
       >
         <p
           style={{
-            fontFamily: "'Cormorant Garamond', serif",
+            fontFamily: "'Nunito', sans-serif",
             fontSize: "12px",
-            letterSpacing: "0.35em",
+            letterSpacing: "0.2em",
             textTransform: "uppercase",
             color: "#c9829c",
             marginBottom: "8px",
@@ -57,7 +57,7 @@ export default async function Home() {
         </h1>
         <p
           style={{
-            fontFamily: "'Cormorant Garamond', serif",
+            fontFamily: "'Nunito', sans-serif",
             fontSize: "14px",
             color: "#b0929e",
             margin: 0,
@@ -68,45 +68,8 @@ export default async function Home() {
       </header>
 
       {/* ── SCROLLABLE WISH LIST ── */}
-      <div
-        style={{
-          flex: 1,
-          overflowY: "auto",
-          padding: "0 24px",
-          maxWidth: "960px",
-          width: "100%",
-          margin: "0 auto",
-          boxSizing: "border-box",
-        }}
-      >
-        {wishes.length === 0 ? (
-          <p
-            style={{
-              color: "#ccc",
-              textAlign: "center",
-              marginTop: "80px",
-              fontStyle: "italic",
-              fontFamily: "'Cormorant Garamond', serif",
-            }}
-          >
-            Chưa có lời chúc nào.
-          </p>
-        ) : (
-          <div style={{ borderTop: "1px solid #ead8e1" }}>
-            {wishes.map((entry, i) => (
-              <WishCard
-                key={i}
-                index={i}
-                name={entry.name}
-                wish={entry.wish}
-                timestamp={entry.timestamp}
-              />
-            ))}
-          </div>
-        )}
-
-        {/* Bottom padding inside scroll */}
-        <div style={{ height: "40px" }} />
+      <div style={{ flex: 1, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+        <WishList wishes={wishes} />
       </div>
     </main>
   );
