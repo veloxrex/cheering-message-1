@@ -21,7 +21,7 @@ const BOT_PATTERNS = [
   "iframely",
 ];
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const ua = (req.headers.get("user-agent") || "").toLowerCase();
   const isBot = BOT_PATTERNS.some((p) => ua.includes(p));
 
