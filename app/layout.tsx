@@ -20,6 +20,14 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="vi">
+      <head>
+        <link
+          rel="alternate"
+          type="application/json+oembed"
+          href="https://cheering-message-1.vercel.app/api/oembed"
+          title="Lời Chúc Năm Mới"
+        />
+      </head>
       <body>
         {/* Navbar */}
         <header className="bg-white border-b border-[#e8dde3] px-6 py-3 flex items-center justify-between">
