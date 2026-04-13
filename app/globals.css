@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+body {
+  background: #f7f3f5;
+  min-height: 100vh;
+  font-family: "Georgia", "Times New Roman", serif;
+  color: #2a1a22;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card-fadein {
+  animation: fadein 0.4s ease forwards;
+  opacity: 0;
+}
