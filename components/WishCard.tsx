@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 
 interface Props {
   name: string;
@@ -27,63 +28,47 @@ function relativeTime(raw: string): string {
 
 export default function WishCard({ name, wish, index, timestamp }: Props) {
   const time = timestamp ? relativeTime(timestamp) : "";
+  const [hovered, setHovered] = useState(false);
 
   return (
     <div
       className="card-fadein"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={{
         animationDelay: `${index * 60}ms`,
-        padding: "28px 0",
-        borderBottom: "1px solid #ead8e1",
+        padding: "24px 16px",
+        borderBottom: "1px solid #ece4e8",
+        borderRadius: "12px",
+        marginBottom: "4px",
+        transition: "background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease",
+        background: hovered ? "rgba(233, 192, 210, 0.12)" : "transparent",
+        transform: hovered ? "translateX(6px)" : "translateX(0)",
+        boxShadow: hovered ? "0 2px 20px rgba(201,130,156,0.08)" : "none",
+        cursor: "default",
       }}
     >
-      {/* Name + time row */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          {/* Avatar initial */}
-          <div
-            style={{
-              width: "32px",
-              height: "32px",
-              borderRadius: "50%",
-              background: "linear-gradient(135deg, #e8b4c8, #c9829c)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexShrink: 0,
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "14px",
-                color: "#fff",
-                fontWeight: 700,
-              }}
-            >
-              {(name || "A")[0].toUpperCase()}
-            </span>
-          </div>
-          <span
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "15px",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-              color: "#9e6882",
-            }}
-          >
-            {name || "Ẩn danh"}
-          </span>
-        </div>
-
+      {/* Name + time */}
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "10px" }}>
+        <span
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "12px",
+            fontWeight: 600,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: hovered ? "#c9829c" : "#9e6882",
+            transition: "color 0.3s ease",
+          }}
+        >
+          {name || "Ẩn danh"}
+        </span>
         {time && (
           <span
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "13px",
               color: "#c9a8b8",
-              letterSpacing: "0.05em",
             }}
           >
             {time}
@@ -91,29 +76,15 @@ export default function WishCard({ name, wish, index, timestamp }: Props) {
         )}
       </div>
 
-      {/* Quote mark */}
-      <div
-        style={{
-          fontFamily: "'Playfair Display', serif",
-          fontSize: "56px",
-          lineHeight: "20px",
-          color: "#e0b8ca",
-          marginBottom: "12px",
-          userSelect: "none",
-        }}
-      >
-        "
-      </div>
-
       {/* Wish text */}
       <p
         style={{
           fontFamily: "'Cormorant Garamond', serif",
-          fontSize: "clamp(18px, 2.5vw, 22px)",
-          lineHeight: 1.7,
-          color: "#3a2030",
-          fontStyle: "italic",
-          margin: "0",
+          fontSize: "clamp(17px, 2.2vw, 20px)",
+          lineHeight: 1.75,
+          color: hovered ? "#2a1020" : "#3a2030",
+          margin: 0,
+          transition: "color 0.3s ease",
         }}
       >
         {wish || "Chúc mừng!"}

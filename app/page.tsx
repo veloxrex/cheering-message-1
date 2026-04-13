@@ -1,6 +1,7 @@
 import { fetchWishes } from "@/lib/sheets";
 import WishCard from "@/components/WishCard";
 import AutoRefresh from "@/components/AutoRefresh";
+import FloatingHearts from "@/components/FloatingHearts";
 
 export const revalidate = 30;
 
@@ -18,6 +19,7 @@ export default async function Home() {
       }}
     >
       <AutoRefresh interval={30000} />
+      <FloatingHearts />
 
       {/* ── HEADER ── */}
       <header
@@ -71,7 +73,7 @@ export default async function Home() {
           flex: 1,
           overflowY: "auto",
           padding: "0 24px",
-          maxWidth: "680px",
+          maxWidth: "960px",
           width: "100%",
           margin: "0 auto",
           boxSizing: "border-box",
