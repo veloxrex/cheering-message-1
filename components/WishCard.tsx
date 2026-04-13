@@ -37,36 +37,8 @@ export default function WishCard({ name, wish, index, timestamp }: Props) {
         borderBottom: "1px solid #ead8e1",
       }}
     >
-      {/* Quote mark */}
-      <div
-        style={{
-          fontFamily: "'Playfair Display', serif",
-          fontSize: "56px",
-          lineHeight: "20px",
-          color: "#e0b8ca",
-          marginBottom: "12px",
-          userSelect: "none",
-        }}
-      >
-        "
-      </div>
-
-      {/* Wish text */}
-      <p
-        style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: "clamp(18px, 2.5vw, 22px)",
-          lineHeight: 1.7,
-          color: "#3a2030",
-          fontStyle: "italic",
-          margin: "0 0 20px",
-        }}
-      >
-        {wish || "Chúc mừng!"}
-      </p>
-
       {/* Name + time row */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           {/* Avatar initial */}
           <div
@@ -118,6 +90,34 @@ export default function WishCard({ name, wish, index, timestamp }: Props) {
           </span>
         )}
       </div>
+
+      {/* Quote mark */}
+      <div
+        style={{
+          fontFamily: "'Playfair Display', serif",
+          fontSize: "56px",
+          lineHeight: "20px",
+          color: "#e0b8ca",
+          marginBottom: "12px",
+          userSelect: "none",
+        }}
+      >
+        "
+      </div>
+
+      {/* Wish text */}
+      <p
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: "clamp(18px, 2.5vw, 22px)",
+          lineHeight: 1.7,
+          color: "#3a2030",
+          fontStyle: "italic",
+          margin: "0",
+        }}
+      >
+        {wish || "Chúc mừng!"}
+      </p>
     </div>
   );
 }
