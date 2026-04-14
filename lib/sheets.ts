@@ -58,8 +58,7 @@ function parseCSV(text: string): string[][] {
   return rows;
 }
 
-export async function fetchWishes(): Promise<WishEntry[]> {
-  const res = await fetch(CSV_URL, { cache: "no-store" });
+export async function fetchWishes(): Promise<WishEntry[]> {  const res = await fetch(CSV_URL, { cache: "no-store" });
 
   if (!res.ok) {
     throw new Error("Không thể tải dữ liệu từ Google Sheets");
