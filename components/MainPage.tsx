@@ -292,7 +292,7 @@ export default function MainPage({ wishes }: { wishes: Entry[] }) {
             {/* Image */}
             <div style={{ position: "relative", width: "100%", aspectRatio: "3/2" }}>
               <Image
-                src={`/album/${encodeURIComponent(IMAGES[preview])}`}
+                src={`/album_compressed/${encodeURIComponent(IMAGES[preview])}`}
                 alt={`Ảnh ${preview + 1}`}
                 fill
                 style={{ objectFit: "contain", background: "#111" }}

@@ -1,3 +1,7 @@
 node_modules/
 .next/
 .env.local
+
+# Large original images (use album_compressed instead)
+public/album/
+album/
