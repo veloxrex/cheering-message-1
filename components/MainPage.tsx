@@ -255,7 +255,7 @@ export default function MainPage({ wishes }: { wishes: Entry[] }) {
               borderRadius: "16px",
               overflow: "hidden",
               boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
-              maxWidth: "min(640px, 92vw)",
+              maxWidth: "min(1100px, 96vw)",
               width: "100%",
             }}
           >
@@ -286,13 +286,13 @@ export default function MainPage({ wishes }: { wishes: Entry[] }) {
             </button>
 
             {/* Image */}
-            <div style={{ position: "relative", width: "100%", aspectRatio: "3/2" }}>
+            <div style={{ position: "relative", width: "100%", height: "82vh" }}>
               <Image
                 src={`/album_compressed/${encodeURIComponent(IMAGES[preview])}`}
                 alt={`Ảnh ${preview + 1}`}
                 fill
                 style={{ objectFit: "contain", background: "#111" }}
-                sizes="640px"
+                sizes="96vw"
               />
             </div>
 
