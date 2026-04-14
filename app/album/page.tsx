@@ -24,10 +24,26 @@ export default function AlbumPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "#fdf8f6",
-        padding: "40px 24px 80px",
+        background: "linear-gradient(135deg, #f9e8ef 0%, #fdf8f6 40%, #f3e8f5 100%)",
+        padding: "32px 24px 60px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
       }}
     >
+      {/* Card container */}
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "1160px",
+          background: "#fdf8f6",
+          borderRadius: "28px",
+          boxShadow: "0 8px 40px rgba(201,130,156,0.13), 0 2px 8px rgba(74,32,56,0.06)",
+          padding: "40px 32px 50px",
+          minHeight: "80vh",
+        }}
+      >
+
       {/* Header */}
       <div style={{ textAlign: "center", marginBottom: "40px" }}>
         <p style={{
@@ -70,11 +86,14 @@ export default function AlbumPage() {
             key={i}
             onClick={() => setLightbox(i)}
             style={{
-              aspectRatio: "3/2",
-              overflow: "hidden",
+              height: "200px",
               borderRadius: "12px",
               cursor: "pointer",
-              position: "relative",
+              backgroundImage: `url('/album/${encodeURIComponent(img)}')`,
+              backgroundSize: "contain",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundColor: "#f5eff2",
               boxShadow: "0 2px 12px rgba(201,130,156,0.08)",
               transition: "transform 0.25s ease, box-shadow 0.25s ease",
             }}
@@ -86,17 +105,11 @@ export default function AlbumPage() {
               (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
               (e.currentTarget as HTMLDivElement).style.boxShadow = "0 2px 12px rgba(201,130,156,0.08)";
             }}
-          >
-            <Image
-              src={`/album/${encodeURIComponent(img)}`}
-              alt={`Ảnh ${i + 1}`}
-              fill
-              style={{ objectFit: "cover" }}
-              sizes="(max-width: 768px) 50vw, 25vw"
-            />
-          </div>
+          />
         ))}
       </div>
+
+      </div>{/* /card */}
 
       {/* Lightbox */}
       {lightbox !== null && (
@@ -137,10 +150,8 @@ export default function AlbumPage() {
             onClick={(e) => e.stopPropagation()}
             style={{
               position: "relative",
-              maxWidth: "90vw",
-              maxHeight: "88vh",
-              width: "800px",
-              height: "600px",
+              width: "min(95vw, 1200px)",
+              height: "min(90vh, 900px)",
               borderRadius: "12px",
               overflow: "hidden",
             }}
@@ -150,7 +161,7 @@ export default function AlbumPage() {
               alt={`Ảnh ${lightbox + 1}`}
               fill
               style={{ objectFit: "contain" }}
-              sizes="90vw"
+              sizes="95vw"
             />
           </div>
 

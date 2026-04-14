@@ -195,41 +195,37 @@ export default function MainPage({ wishes }: { wishes: Entry[] }) {
               style={{
                 maxWidth: "1100px",
                 margin: "0 auto",
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-                gap: "10px",
+                columns: "4 160px",
+                columnGap: "10px",
+                columnFill: "balance",
               }}
             >
               {IMAGES.map((img, i) => (
-                <div
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
                   key={i}
+                  src={`/album_compressed/${encodeURIComponent(img)}`}
+                  alt={`Ảnh ${i + 1}`}
                   onClick={() => setPreview(i)}
                   style={{
-                    aspectRatio: "3/2",
-                    overflow: "hidden",
+                    width: "100%",
+                    display: "block",
+                    marginBottom: "10px",
                     borderRadius: "10px",
                     cursor: "pointer",
-                    position: "relative",
+                    breakInside: "avoid",
                     boxShadow: "0 2px 10px rgba(201,130,156,0.1)",
                     transition: "transform 0.2s ease, box-shadow 0.2s ease",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.transform = "scale(1.04)";
-                    (e.currentTarget as HTMLDivElement).style.boxShadow = "0 6px 20px rgba(201,130,156,0.25)";
+                    (e.currentTarget as HTMLImageElement).style.transform = "scale(1.03)";
+                    (e.currentTarget as HTMLImageElement).style.boxShadow = "0 6px 20px rgba(201,130,156,0.25)";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
-                    (e.currentTarget as HTMLDivElement).style.boxShadow = "0 2px 10px rgba(201,130,156,0.1)";
+                    (e.currentTarget as HTMLImageElement).style.transform = "scale(1)";
+                    (e.currentTarget as HTMLImageElement).style.boxShadow = "0 2px 10px rgba(201,130,156,0.1)";
                   }}
-                >
-                  <Image
-                    src={`/album_compressed/${encodeURIComponent(img)}`}
-                    alt={`Ảnh ${i + 1}`}
-                    fill
-                    style={{ objectFit: "cover" }}
-                    sizes="(max-width: 600px) 50vw, 200px"
-                  />
-                </div>
+                />
               ))}
             </div>
           </div>
