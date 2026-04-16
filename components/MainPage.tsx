@@ -2,7 +2,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import WishCard from "./WishCard";
-import FloatingHearts from "./FloatingHearts";
 import AutoRefresh from "./AutoRefresh";
 
 interface Entry {
@@ -50,7 +49,6 @@ export default function MainPage({ wishes }: { wishes: Entry[] }) {
       }}
     >
       <AutoRefresh interval={10000} />
-      <FloatingHearts />
 
       {/* ── HEADER ── */}
       <header

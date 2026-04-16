@@ -92,6 +92,8 @@ export default function WishCard({ name, wish, index, timestamp }: Props) {
       >
         {wish || "Chúc mừng!"}
       </p>
+
+
     </div>
   );
 }
