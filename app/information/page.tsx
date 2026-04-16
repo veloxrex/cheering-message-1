@@ -9,7 +9,7 @@ const RX = [188, 233, 278];
 const RY = [94, 144, 185, 225, 265, 307, 350, 396, 435];
 
 // Nhà trai = bên trái (LX), nhà gái = bên phải (RX)
-const NHA_TRAI_IDS = new Set([3,7,8,9,13,14,15,18,19,22,23,24,28,29,30,35,36,37,41,42,43]);
+const NHA_TRAI_IDS = new Set([4,5,6,10,11,12,16,17,20,21,25,26,27,31,32,33,34,38,39,40,44,45,46]);
 const BAN_PHU_IDS = new Set([1, 2]);
 
 const TABLES = [
@@ -229,9 +229,9 @@ function InformationContent() {
 
         {/* ── Nhà trai / Nhà gái labels ── */}
         <div style={{ display: "flex", marginTop: 10 }}>
-          <div style={{ flex: 1, textAlign: "center", fontSize: "11px", fontWeight: 800, color: "#c9829c", letterSpacing: "0.15em", textTransform: "uppercase", fontFamily: "'Manrope', sans-serif" }}>Nhà trai</div>
-          <div style={{ width: 36 }} />
           <div style={{ flex: 1, textAlign: "center", fontSize: "11px", fontWeight: 800, color: "#c9829c", letterSpacing: "0.15em", textTransform: "uppercase", fontFamily: "'Manrope', sans-serif" }}>Nhà gái</div>
+          <div style={{ width: 36 }} />
+          <div style={{ flex: 1, textAlign: "center", fontSize: "11px", fontWeight: 800, color: "#c9829c", letterSpacing: "0.15em", textTransform: "uppercase", fontFamily: "'Manrope', sans-serif" }}>Nhà trai</div>
         </div>
       </div>
 
