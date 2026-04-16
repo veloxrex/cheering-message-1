@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
 // ── Lưới căn chỉnh ──────────────────────────────────────────────────────────
@@ -61,7 +61,7 @@ const TABLES = [
   { id: 46, cx: RX[2], cy: RY[8], r: 15 },
 ];
 
-export default function PositionPage() {
+function InformationContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathParam = searchParams.get("path");
@@ -161,10 +161,12 @@ export default function PositionPage() {
             {/* ── Lối đi ngang (hàng ngang phân cách) ── */}
             <line x1="1" y1="352" x2="129" y2="352" stroke="#b0b8c8" strokeWidth="2" strokeDasharray="6 3" />
 
-            {/* ── Nhà vệ sinh ── */}
-            <rect x="261" y="192" width="33" height="24" rx="6" fill="#f0f2f5" stroke="#dde0e5" strokeWidth="1" />
-            <text x="277.5" y="201" textAnchor="middle" fontSize="5" fontWeight="700" fill="#8a9bb0" fontFamily="Helvetica" letterSpacing="0.3">NHÀ</text>
-            <text x="277.5" y="210" textAnchor="middle" fontSize="5" fontWeight="700" fill="#8a9bb0" fontFamily="Helvetica" letterSpacing="0.3">VỆ SINH</text>
+            {/* ── Lối thoát hiểm ── */}
+            <rect x="257" y="192" width="37" height="24" rx="6" fill="#fff3e0" stroke="#ff9800" strokeWidth="1" />
+            <text x="275.5" y="201" textAnchor="middle" fontSize="4.5" fontWeight="700" fill="#e65100" fontFamily="Helvetica" letterSpacing="0.2">LỐI THOÁT</text>
+            <text x="275.5" y="210" textAnchor="middle" fontSize="4.5" fontWeight="700" fill="#e65100" fontFamily="Helvetica" letterSpacing="0.2">HIỂM</text>
+
+           
 
             {/* ── Máy lạnh ── */}
             <rect x="1" y="215.2" width="21.7" height="19.57" rx="4" fill="#eff8ff" stroke="#bae0ff" strokeWidth="1" />
@@ -381,5 +383,13 @@ export default function PositionPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function PositionPage() {
+  return (
+    <Suspense>
+      <InformationContent />
+    </Suspense>
   );
 }
