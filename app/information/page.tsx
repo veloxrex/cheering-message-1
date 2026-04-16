@@ -9,8 +9,18 @@ const RX = [188, 233, 278];
 const RY = [94, 144, 185, 225, 265, 307, 350, 396, 435];
 
 // Nhà trai = bên trái (LX), nhà gái = bên phải (RX)
-const NHA_TRAI_IDS = new Set([4,5,6,10,11,12,16,17,20,21,25,26,27,31,32,33,34,38,39,40,44,45,46]);
+const NHA_TRAI_IDS = new Set([4,10,16,17,20,21,25,28,29,30,38,39,40,44,45,46]);
+const KITS_IDS        = new Set([31]);
+const HOI_ACE_CAULONG_IDS = new Set([5,6,11,12]);
+const ZOI_IDS         = new Set([26,27,32,33,34]);
 const BAN_PHU_IDS = new Set([1, 2]);
+const PHU_HUYNH_TRAI_IDS = new Set([16, 17, 20, 21, 25]);
+const HO_HANG_GAI_IDS    = new Set([3, 8, 9]);
+const HOI_CA_SAU_IDS     = new Set([7]);
+const BAN_BE_PTSC_IDS    = new Set([13, 14]);
+const GIA_DINH_VUI_VE_IDS = new Set([15]);
+const GIA_DINH_LAU5_IDS  = new Set([18]);
+const GIA_DINH_BAC_IDS   = new Set([4, 10]);
 
 const TABLES = [
   { id: 1,  cx: LX[0], cy: RY[0], r: 15 },
@@ -162,9 +172,9 @@ function InformationContent() {
             <line x1="1" y1="352" x2="129" y2="352" stroke="#b0b8c8" strokeWidth="2" strokeDasharray="6 3" />
 
             {/* ── Lối thoát hiểm ── */}
-            <rect x="257" y="192" width="37" height="24" rx="6" fill="#fff3e0" stroke="#ff9800" strokeWidth="1" />
-            <text x="275.5" y="201" textAnchor="middle" fontSize="4.5" fontWeight="700" fill="#e65100" fontFamily="Helvetica" letterSpacing="0.2">LỐI THOÁT</text>
-            <text x="275.5" y="210" textAnchor="middle" fontSize="4.5" fontWeight="700" fill="#e65100" fontFamily="Helvetica" letterSpacing="0.2">HIỂM</text>
+            <rect x="257" y="192" width="37" height="24" rx="6" fill="#f0f0f0" stroke="#bdbdbd" strokeWidth="1" />
+            <text x="275.5" y="201" textAnchor="middle" fontSize="4.5" fontWeight="700" fill="#757575" fontFamily="Helvetica" letterSpacing="0.2">LỐI THOÁT</text>
+            <text x="275.5" y="210" textAnchor="middle" fontSize="4.5" fontWeight="700" fill="#757575" fontFamily="Helvetica" letterSpacing="0.2">HIỂM</text>
 
            
 
@@ -188,11 +198,36 @@ function InformationContent() {
 
             {/* ── 46 bàn ── */}
             {TABLES.map((t) => {
-              const isPhu  = BAN_PHU_IDS.has(t.id);
-              const isTrai = !isPhu && NHA_TRAI_IDS.has(t.id);
-              const bg     = isPhu ? "#f0f0f0" : isTrai ? "#e8f5e9" : "#fde8ec";
-              const stroke = isPhu ? "#bdbdbd" : isTrai ? "#81c784" : "#f4a0b4";
-              const color  = isPhu ? "#757575" : isTrai ? "#1b5e20" : "#8b2252";
+              // Mỗi nhóm = 1 màu nền riêng biệt, viền đồng nhất
+              // Nguyên tắc: 1 tín hiệu màu duy nhất per bàn → không rối mắt
+              const bg =
+                BAN_PHU_IDS.has(t.id)       ? "#f2f2f2" :  // xám rất nhạt
+                HO_HANG_GAI_IDS.has(t.id)   ? "#fce8f0" :  // hồng nhạt
+                HOI_CA_SAU_IDS.has(t.id)    ? "#ede0f8" :  // tím rất nhạt
+                BAN_BE_PTSC_IDS.has(t.id)   ? "#fdefd8" :  // cam đào nhạt
+                GIA_DINH_VUI_VE_IDS.has(t.id) ? "#f6f4c0" : // vàng rất nhạt
+                GIA_DINH_LAU5_IDS.has(t.id) ? "#fde6dc" :  // hồng cam nhạt
+                GIA_DINH_BAC_IDS.has(t.id)   ? "#d4eeff" :  // xanh dương nhạt
+                PHU_HUYNH_TRAI_IDS.has(t.id) ? "#cceedd" :  // xanh lá nhạt
+                ZOI_IDS.has(t.id)            ? "#e8f8ff" :  // xanh lơ nhạt - Zoi
+                KITS_IDS.has(t.id)           ? "#fff3e0" :  // cam nhạt - KITS
+                HOI_ACE_CAULONG_IDS.has(t.id) ? "#e8f0ff" :  // tím xanh nhạt - cầu lông
+                NHA_TRAI_IDS.has(t.id)      ? "#ffffff" :  // trắng - nhà trai chưa xếp
+                "#ffffff";                                   // trắng - chưa xếp
+              const textColor =
+                BAN_PHU_IDS.has(t.id)       ? "#666666" :
+                HO_HANG_GAI_IDS.has(t.id)   ? "#8b3a5a" :
+                HOI_CA_SAU_IDS.has(t.id)    ? "#5c3880" :
+                BAN_BE_PTSC_IDS.has(t.id)   ? "#8b5020" :
+                GIA_DINH_VUI_VE_IDS.has(t.id) ? "#6b6010" :
+                GIA_DINH_LAU5_IDS.has(t.id) ? "#8b4030" :
+                GIA_DINH_BAC_IDS.has(t.id)   ? "#1a4070" :
+                PHU_HUYNH_TRAI_IDS.has(t.id) ? "#1a5c38" :
+                ZOI_IDS.has(t.id)            ? "#1a5878" :
+                KITS_IDS.has(t.id)           ? "#7a4010" :
+                HOI_ACE_CAULONG_IDS.has(t.id) ? "#2a3080" :
+                NHA_TRAI_IDS.has(t.id)      ? "#555555" :
+                "#555555";
               return (
                 <g key={t.id} filter="url(#cardShadow)">
                   <rect
@@ -203,15 +238,15 @@ function InformationContent() {
                     rx={6}
                     ry={6}
                     fill={bg}
-                    stroke={stroke}
-                    strokeWidth="1"
+                    stroke="rgba(0,0,0,0.14)"
+                    strokeWidth="1.2"
                   />
                   <text
                     x={t.cx}
                     y={t.cy + 4}
                     textAnchor="middle"
                     fontSize="9.5"
-                    fill={color}
+                    fill={textColor}
                     fontWeight="700"
                     fontFamily="'Manrope', sans-serif"
                   >
@@ -237,22 +272,63 @@ function InformationContent() {
 
       {/* ── Chú thích ── */}
       <div style={{
-        marginTop: "20px",
+        marginTop: "16px",
+        width: "100%",
+        maxWidth: 480,
+        fontFamily: "'Manrope', sans-serif",
         display: "flex",
-        gap: "16px",
-        flexWrap: "wrap",
-        justifyContent: "center",
+        flexDirection: "column",
+        gap: 10,
       }}>
-        {[
-          { fill: "#e8f5e9", stroke: "#81c784", label: "Nhà trai" },
-          { fill: "#fde8ec", stroke: "#f4a0b4", label: "Nhà gái" },
-          { fill: "#f0f0f0", stroke: "#bdbdbd", label: "Bàn phụ" },
-        ].map((l) => (
-          <div key={l.label} style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#b0929e", fontFamily: "'Manrope', sans-serif", fontWeight: 600 }}>
-            <div style={{ width: 16, height: 16, borderRadius: 4, background: l.fill, border: `2px solid ${l.stroke}`, flexShrink: 0 }} />
-            {l.label}
+        {/* Legend: 2 cột - nhà gái / nhà trai */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+          {/* Nhà gái */}
+          <div style={{ background: "white", borderRadius: 16, border: "1px solid #eedde6", overflow: "hidden" }}>
+            <div style={{ background: "#fdf0f5", padding: "8px 12px" }}>
+              <span style={{ fontSize: "12px", fontWeight: 800, color: "#8b3060" }}>Nhà gái</span>
+            </div>
+            <div style={{ padding: "10px 12px", display: "flex", flexDirection: "column", gap: 9 }}>
+              {[
+                { fill: "#ffffff", label: "Bạn bè cô dâu" },
+                { fill: "#fce8f0", label: "Họ hàng ba mẹ cô dâu", tables: "3,8,9" },
+                { fill: "#ede0f8", label: "Hội cá sấu hoa cà", tables: "7" },
+                { fill: "#fdefd8", label: "Bạn bè PTSC", tables: "13,14" },
+                { fill: "#f6f4c0", label: "GĐ vui vẻ", tables: "15" },
+                { fill: "#fde6dc", label: "GĐ lầu 5", tables: "18" },
+                { fill: "#f2f2f2", label: "Bàn phụ", tables: "1,2" },
+              ].map((l) => (
+                <div key={l.label} style={{ display: "flex", alignItems: "center", gap: 7 }}>
+                  <div style={{ width: 16, height: 16, borderRadius: 4, background: l.fill, border: "1px solid rgba(0,0,0,0.12)", flexShrink: 0 }} />
+                  <span style={{ fontSize: "12px", color: "#6b4055", flex: 1, lineHeight: 1.3 }}>{l.label}</span>
+                  {l.tables && <span style={{ fontSize: "12px", fontWeight: 700, color: "#8b3060", background: "#fce8f0", borderRadius: 6, padding: "1px 5px", flexShrink: 0 }}>{l.tables}</span>}
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
+
+          {/* Nhà trai */}
+          <div style={{ background: "white", borderRadius: 16, border: "1px solid #c8e4d0", overflow: "hidden" }}>
+            <div style={{ background: "#f0faf4", padding: "8px 12px" }}>
+              <span style={{ fontSize: "12px", fontWeight: 800, color: "#1a5c38" }}>Nhà trai</span>
+            </div>
+            <div style={{ padding: "10px 12px", display: "flex", flexDirection: "column", gap: 9 }}>
+              {[
+                { fill: "#ffffff", label: "Bạn bè chú rể" },
+                { fill: "#d4eeff", label: "GĐ các bác & bạn bè của ba", tables: "4,10" },
+                { fill: "#cceedd", label: "Bạn bè của mẹ", tables: "16,17,20,21,25" },
+                { fill: "#e8f8ff", label: "Công ty Zoi", tables: "26,27,32-34" },
+                { fill: "#fff3e0", label: "Anh em Kaizen team", tables: "31" },
+                { fill: "#e8f0ff", label: "Hội ACE + nhóm cầu lông", tables: "5,6,11,12" },
+              ].map((l) => (
+                <div key={l.label} style={{ display: "flex", alignItems: "center", gap: 7 }}>
+                  <div style={{ width: 16, height: 16, borderRadius: 4, background: l.fill, border: "1px solid rgba(0,0,0,0.12)", flexShrink: 0 }} />
+                  <span style={{ fontSize: "12px", color: "#1a5c38", flex: 1, lineHeight: 1.3 }}>{l.label}</span>
+                  {l.tables && <span style={{ fontSize: "12px", fontWeight: 700, color: "#1a5c38", background: "#ddf0e4", borderRadius: 6, padding: "1px 5px", flexShrink: 0 }}>{l.tables}</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
       </>
       )}
