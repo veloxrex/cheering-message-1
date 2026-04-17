@@ -20,6 +20,7 @@ const HOI_CA_SAU_IDS     = new Set([7]);
 const BAN_BE_PTSC_IDS    = new Set([13, 14]);
 const GIA_DINH_VUI_VE_IDS = new Set([15]);
 const GIA_DINH_LAU5_IDS  = new Set([18]);
+const NHAI_MUOI_HOM_IDS  = new Set([19]);
 const GIA_DINH_BAC_IDS   = new Set([4, 10]);
 
 const TABLES = [
@@ -207,6 +208,7 @@ function InformationContent() {
                 BAN_BE_PTSC_IDS.has(t.id)   ? "#fdefd8" :  // cam đào nhạt
                 GIA_DINH_VUI_VE_IDS.has(t.id) ? "#f6f4c0" : // vàng rất nhạt
                 GIA_DINH_LAU5_IDS.has(t.id) ? "#fde6dc" :  // hồng cam nhạt
+                NHAI_MUOI_HOM_IDS.has(t.id)  ? "#c8f0e4" :  // xanh mint nhạt
                 GIA_DINH_BAC_IDS.has(t.id)   ? "#d4eeff" :  // xanh dương nhạt
                 PHU_HUYNH_TRAI_IDS.has(t.id) ? "#cceedd" :  // xanh lá nhạt
                 ZOI_IDS.has(t.id)            ? "#e8f8ff" :  // xanh lơ nhạt - Zoi
@@ -221,6 +223,7 @@ function InformationContent() {
                 BAN_BE_PTSC_IDS.has(t.id)   ? "#8b5020" :
                 GIA_DINH_VUI_VE_IDS.has(t.id) ? "#6b6010" :
                 GIA_DINH_LAU5_IDS.has(t.id) ? "#8b4030" :
+                NHAI_MUOI_HOM_IDS.has(t.id)  ? "#1a6b50" :
                 GIA_DINH_BAC_IDS.has(t.id)   ? "#1a4070" :
                 PHU_HUYNH_TRAI_IDS.has(t.id) ? "#1a5c38" :
                 ZOI_IDS.has(t.id)            ? "#1a5878" :
@@ -295,6 +298,7 @@ function InformationContent() {
                 { fill: "#fdefd8", label: "Bạn bè PTSC", tables: "13,14" },
                 { fill: "#f6f4c0", label: "GĐ vui vẻ", tables: "15" },
                 { fill: "#fde6dc", label: "GĐ lầu 5", tables: "18" },
+                { fill: "#c8f0e4", label: "Nhái Mười Hom", tables: "19" },
                 { fill: "#f2f2f2", label: "Bàn phụ", tables: "1,2" },
               ].map((l) => (
                 <div key={l.label} style={{ display: "flex", alignItems: "center", gap: 7 }}>
