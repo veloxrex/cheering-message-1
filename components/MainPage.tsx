@@ -28,6 +28,7 @@ const BAN_DAI_HOC_IDS = new Set([24]);
 const BAN_CAP3_IDS = new Set([30]);
 const BAN_CAP2_IDS = new Set([29]);
 const HYUNDAI_IDS = new Set([35,36,37,41,42,43]);
+const BAN_BAN_CHU_TAN_IDS = new Set([38]);
 const BAN_BE_BA_ME_IDS = new Set([22,23,28]);
 const SEAT_TABLES = [
   { id: 1,  cx: LX[0], cy: RY[0], r: 15 }, { id: 2,  cx: LX[1], cy: RY[0], r: 15 },
@@ -325,6 +326,7 @@ export default function MainPage({ wishes }: { wishes: Entry[] }) {
                     BAN_CAP3_IDS.has(t.id) ? "#d8f0c8" :
                     BAN_CAP2_IDS.has(t.id) ? "#c8e8f8" :
                     HYUNDAI_IDS.has(t.id) ? "#e8d8f8" :
+                    BAN_BAN_CHU_TAN_IDS.has(t.id) ? "#fce0c8" :
                     BAN_BE_BA_ME_IDS.has(t.id) ? "#f8e8c8" :
                     NHA_TRAI_IDS.has(t.id) ? "#ffffff" : "#ffffff";
                   const textColor =
@@ -339,6 +341,7 @@ export default function MainPage({ wishes }: { wishes: Entry[] }) {
                     BAN_CAP3_IDS.has(t.id) ? "#2a6010" :
                     BAN_CAP2_IDS.has(t.id) ? "#1a5070" :
                     HYUNDAI_IDS.has(t.id) ? "#502080" :
+                    BAN_BAN_CHU_TAN_IDS.has(t.id) ? "#7a4020" :
                     BAN_BE_BA_ME_IDS.has(t.id) ? "#705010" : "#555555";
                   return (
                     <g
@@ -386,7 +389,8 @@ export default function MainPage({ wishes }: { wishes: Entry[] }) {
                     { fill: "#c8e8f8", label: "Bạn cấp 2", tables: "29" },
                     { fill: "#d8f0c8", label: "Bạn cấp 3", tables: "30" },
                     { fill: "#e8d8f8", label: "Anh Chị đồng nghiệp Hyundai", tables: "35-43" },
-                    { fill: "#f2f2f2", label: "Bàn phụ", tables: "1,2" },
+                    { fill: "#fce0c8", label: "Bạn chú Tân", tables: "38" },
+                    { fill: "#f2f2f2", label: "Bàn dự phòng", tables: "1,2" },
                   ].map((l) => (
                     <div key={l.label} style={{ display: "flex", alignItems: "center", gap: 7 }}>
                       <div style={{ width: 16, height: 16, borderRadius: 4, background: l.fill, border: "1px solid rgba(0,0,0,0.12)", flexShrink: 0 }} />
