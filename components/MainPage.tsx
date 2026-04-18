@@ -323,7 +323,7 @@ export default function MainPage({ wishes }: { wishes: Entry[] }) {
                     { fill: "#cceedd", label: "Bạn bè của mẹ", tables: "16,17,20,21,25" },
                     { fill: "#e8f8ff", label: "Công ty Zoi", tables: "26,27,32,34" },
                     { fill: "#fce8d8", label: "Hội Chubby", tables: "33" },
-                    { fill: "#fff3e0", label: "Anh em Kaizen team", tables: "31" },
+                    { fill: "#fff3e0", label: "Anh em Kaizen team + Smart Fun", tables: "31" },
                     { fill: "#e8f0ff", label: "Hội ACE + nhóm cầu lông", tables: "5,6,11,12" },
                   ].map((l) => (
                     <div key={l.label} style={{ display: "flex", alignItems: "center", gap: 7 }}>
