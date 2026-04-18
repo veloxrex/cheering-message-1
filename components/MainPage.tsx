@@ -55,6 +55,81 @@ const SEAT_TABLES = [
   { id: 45, cx: RX[1], cy: RY[8], r: 15 }, { id: 46, cx: RX[2], cy: RY[8], r: 15 },
 ];
 
+const TABLE_GUESTS: Record<number, { name: string; count: number }[]> = {
+  16: [
+    { name: "Bác An và gia đình Quang Anh", count: 1 },
+    { name: "Gia đình ông bà Nghiêm-Thu", count: 2 },
+    { name: "Gia đình em Huy-Nhung", count: 2 },
+    { name: "Gia đình bạn Ngọc Lan", count: 1 },
+    { name: "Gia đình bạn Bích Liên", count: 1 },
+    { name: "Bạn Thu Nga", count: 1 },
+    { name: "Bạn Tấn Thanh", count: 1 },
+    { name: "Bạn Thanh Hoàng", count: 1 },
+  ],
+  17: [
+    { name: "Vợ chồng bạn Hoàng Phi", count: 1 },
+    { name: "Bạn Xuân Dung", count: 1 },
+    { name: "Vợ chồng bạn Hiền NH", count: 1 },
+    { name: "Bạn Sơn NH", count: 1 },
+    { name: "Bạn Hoài NH", count: 1 },
+    { name: "Anh Khang NH", count: 1 },
+    { name: "Bạn Uyên Phương và con gái", count: 2 },
+    { name: "Vợ chồng bạn LyNa", count: 1 },
+    { name: "Bạn Loan (PT)", count: 1 },
+  ],
+  20: [
+    { name: "Anh Quảng", count: 1 },
+    { name: "Anh Nam-Mai", count: 1 },
+    { name: "Bạn Đan Hà (Bảo Công Lý)", count: 1 },
+    { name: "Anh Chị Thu (Sacombank)", count: 1 },
+    { name: "Chị Lê NH", count: 1 },
+    { name: "Em Bảo (trường VTS)", count: 1 },
+    { name: "Chị Nữ", count: 1 },
+    { name: "Vợ chồng bạn Đoan Hạnh", count: 1 },
+    { name: "Em Hường (VPĐKĐ)", count: 1 },
+    { name: "Gia đình chị Nga (bác Toản)", count: 1 },
+  ],
+  21: [
+    { name: "Vợ chồng em Hồng Phương", count: 1 },
+    { name: "Em Loan", count: 1 },
+    { name: "Em Tiến", count: 1 },
+    { name: "Em Huy", count: 1 },
+    { name: "Gia đình Chị Thị", count: 1 },
+    { name: "Gia đình Chị Hóa", count: 1 },
+    { name: "Gia đình Chị Đào", count: 1 },
+    { name: "Em Lan y tế", count: 1 },
+    { name: "Gia đình bạn Hương Hoa", count: 1 },
+  ],
+  25: [
+    { name: "Anh chị Điện (gd ban)", count: 1 },
+    { name: "Anh chị Thùy Tuyến", count: 1 },
+    { name: "Vợ chồng Bảo Phương (gd ban)", count: 1 },
+    { name: "Vợ chồng Minh Quân (pgd ban)", count: 1 },
+    { name: "Vợ chồng Tạo (pgd ban)", count: 1 },
+    { name: "Vợ chồng Thanh (tổ TC)", count: 1 },
+    { name: "Vợ chồng Lâm (tổ TC)", count: 1 },
+    { name: "Vợ chồng Đạt (tổ TC)", count: 1 },
+    { name: "Em Nguyên (KT3)", count: 1 },
+    { name: "Em Thùy (ban bồi thường)", count: 1 },
+    { name: "Em Linh (ban bồi thường)", count: 1 },
+  ],
+  31: [
+    { name: "Gia đình anh Nghĩa", count: 1 },
+    { name: "Gia đình anh Nguyên", count: 1 },
+    { name: "Gia đình anh Đô", count: 1 },
+    { name: "Gia đình anh Quân", count: 1 },
+    { name: "Gia đình bạn Hưng", count: 1 },
+  ],
+  33: [
+    { name: "Gia đình anh Khánh", count: 1 },
+    { name: "Gia đình bạn An", count: 1 },
+    { name: "Em Vinh Lâm (2 em)", count: 1 },
+    { name: "Em Bảo", count: 1 },
+    { name: "Gia đình em Trương", count: 1 },
+    { name: "Em Duy", count: 1 },
+  ],
+};
+
 interface Entry {
   name: string;
   wish: string;
@@ -89,6 +164,7 @@ export default function MainPage({ wishes }: { wishes: Entry[] }) {
   const tabParam = searchParams.get("tab") as Tab | null;
   const [tab, setTab] = useState<Tab>(VALID_TABS.includes(tabParam as Tab) ? tabParam! : "seating");
   const [preview, setPreview] = useState<number | null>(null);
+  const [selectedTable, setSelectedTable] = useState<number | null>(null);
 
   useEffect(() => {
     const t = searchParams.get("tab") as Tab | null;
@@ -265,9 +341,17 @@ export default function MainPage({ wishes }: { wishes: Entry[] }) {
                     HYUNDAI_IDS.has(t.id) ? "#502080" :
                     BAN_BE_BA_ME_IDS.has(t.id) ? "#705010" : "#555555";
                   return (
-                    <g key={t.id} filter="url(#cShadow)">
+                    <g
+                      key={t.id}
+                      filter="url(#cShadow)"
+                      onClick={() => TABLE_GUESTS[t.id] ? setSelectedTable(t.id) : undefined}
+                      style={TABLE_GUESTS[t.id] ? { cursor: "pointer" } : undefined}
+                    >
                       <rect x={t.cx - t.r} y={t.cy - t.r} width={t.r * 2} height={t.r * 2} rx={6} fill={bg} stroke="rgba(0,0,0,0.14)" strokeWidth="1.2" />
                       <text x={t.cx} y={t.cy + 4} textAnchor="middle" fontSize="9.5" fill={textColor} fontWeight="700" fontFamily="'Nunito', sans-serif">{t.id}</text>
+                      {TABLE_GUESTS[t.id] && (
+                        <circle cx={t.cx + t.r - 3} cy={t.cy - t.r + 3} r={3.5} fill="#c9829c" />
+                      )}
                     </g>
                   );
                 })}
@@ -490,6 +574,64 @@ export default function MainPage({ wishes }: { wishes: Entry[] }) {
         })}
       </nav>
       </div>
+
+      {/* ── GUEST LIST MODAL ── */}
+      {selectedTable !== null && TABLE_GUESTS[selectedTable] && (
+        <div
+          onClick={() => setSelectedTable(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(20,8,15,0.6)",
+            zIndex: 1000,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "16px",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "#fff",
+              borderRadius: 20,
+              boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
+              width: "100%",
+              maxWidth: 400,
+              overflow: "hidden",
+              maxHeight: "80vh",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {/* Header */}
+            <div style={{ background: "linear-gradient(135deg, #fdf0f5, #fff5f8)", padding: "16px 20px", borderBottom: "1px solid #ead8e1", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div>
+                <p style={{ margin: 0, fontSize: "10px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9829c", fontFamily: "'Nunito', sans-serif" }}>Danh sách khách</p>
+                <p style={{ margin: "2px 0 0", fontSize: "20px", fontWeight: 800, color: "#4a2038", fontFamily: "'Nunito', sans-serif" }}>Bàn {selectedTable}</p>
+              </div>
+              <button
+                onClick={() => setSelectedTable(null)}
+                style={{ background: "rgba(201,130,156,0.12)", border: "none", borderRadius: "50%", width: 32, height: 32, color: "#c9829c", fontSize: "18px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}
+              >×</button>
+            </div>
+            {/* Guest list */}
+            <div style={{ overflowY: "auto", padding: "12px 20px 20px" }}>
+              {TABLE_GUESTS[selectedTable].map((g, i) => (
+                <div
+                  key={i}
+                  style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "9px 0", borderBottom: i < TABLE_GUESTS[selectedTable].length - 1 ? "1px dashed #f0e4ea" : "none" }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <span style={{ width: 22, height: 22, borderRadius: "50%", background: "#fce8f0", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: 700, color: "#c9829c", flexShrink: 0, fontFamily: "'Nunito', sans-serif" }}>{i + 1}</span>
+                    <span style={{ fontSize: "14px", color: "#4a2038", fontFamily: "'Nunito', sans-serif" }}>{g.name}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── SMALL PREVIEW MODAL ── */}
       {preview !== null && (
